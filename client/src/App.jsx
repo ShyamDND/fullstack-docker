@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect } from 'react'
 import './App.css'
 import { useState } from 'react'
@@ -8,28 +7,17 @@ export default function App() {
   const [message, setMessage] = useState('')
   const [isPending, startTransition] = useTransition()
 
-  async function fetchData() {
-    try {
-      const response = await fetch('/api/message')
-      if (!response.ok) {
-        console.error('Network response was not ok')
-      }
-      const data = await response.json()
-      setMessage(data.message)
-    } catch (error) {
-      console.error('Network response was not ok')
-    }
-  }
-
   useEffect(() => {
-    startTransition(() => {
-      fetchData()
-    })
+    console.log('Helo')
+    fetch('http://localhost:4000/api/message')
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message))
   }, [])
 
   return (
     <>
       <h1>Welcome to VELTO by Shyam</h1>
+      <p>Hello nunu boy</p>
       <h2>DATA: {message}</h2>
     </>
   )

@@ -9,6 +9,7 @@ services:
     networks:
       - fullstack-net
     restart: unless-stopped
+    command: npm run dev
   client:
     build: ./client
     container_name: react-client
